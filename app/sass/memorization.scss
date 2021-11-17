@@ -20,45 +20,45 @@ html {
 .main {
     // background-color: crimson;
 }
-.size-playing-field {
-    // border: blueviolet 2px solid;
-    margin: 0 auto;
-    display: flex;
-    width: 60%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    // background-color: aquamarine;
-    font-size: 48px;
-    // text-shadow: 4px 4px 4px #aaa;
-    // padding: 40px 10px;
-    text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
-    color: #fff;
-    // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
-    // &__name {
-    //     padding: 10px;
-    //     width: 100%;
-    //     display: flex;
-    //     justify-content: center;
-    //     &-text {
-    //         font-size: 30px;
-    //         color: #fff;
-    // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
-    // color: #707070;
-    // text-shadow: 2px 2px 0px #eeeeee, 4px 4px 0px #707070;
-    // // color: #fff;
-    // // text-shadow: 0px 1px 0px #c7c8ca, 0px 2px 0px #b1b3b6, 0px 3px 0px #9d9fa2, 0px 4px 0px #8a8c8e, 0px 5px 0px #77787b, 0px 6px 0px #636466, 0px 7px 0px #4d4d4f, 0px 8px 7px #001135;
-    //     }
-    // }
-    &__el {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 15%;
-        height: 70px;
-        cursor: pointer;
-    }
-}
+// .size-playing-field {
+//     // border: blueviolet 2px solid;
+//     margin: 0 auto;
+//     display: flex;
+//     width: 60%;
+//     justify-content: space-between;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     // background-color: aquamarine;
+//     font-size: 48px;
+//     // text-shadow: 4px 4px 4px #aaa;
+//     // padding: 40px 10px;
+//     text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
+//     color: #fff;
+//     // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
+//     // &__name {
+//     //     padding: 10px;
+//     //     width: 100%;
+//     //     display: flex;
+//     //     justify-content: center;
+//     //     &-text {
+//     //         font-size: 30px;
+//     //         color: #fff;
+//     // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
+//     // color: #707070;
+//     // text-shadow: 2px 2px 0px #eeeeee, 4px 4px 0px #707070;
+//     // // color: #fff;
+//     // // text-shadow: 0px 1px 0px #c7c8ca, 0px 2px 0px #b1b3b6, 0px 3px 0px #9d9fa2, 0px 4px 0px #8a8c8e, 0px 5px 0px #77787b, 0px 6px 0px #636466, 0px 7px 0px #4d4d4f, 0px 8px 7px #001135;
+//     //     }
+//     // }
+//     &__el {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 15%;
+//         height: 70px;
+//         cursor: pointer;
+//     }
+// }
 .playing-field {
     z-index: 1;
     position: relative;
@@ -67,8 +67,8 @@ html {
     border: 5px solid red;
     border-radius: 10px;
     padding: 10px;
-    width: 680px;
-    height: auto;
+    width: 800px;
+    height: 800px;
     background-color: aquamarine;
     display: flex;
     flex-wrap: wrap;
@@ -76,50 +76,39 @@ html {
     align-items: center;
 }
 .card-container {
-    margin: 10px;
-    perspective: 1000;
-    // background-color: rgb(0, 255, 64);
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 190px;
+
+    // perspective: 1000;
 }
 /* переверните сторону при проведении мышью */
-// .card-container:hover .card, .card-container.hover .card ,
-.card-container .card.flip {
-    transform: rotateY(180deg);
-}
-    
-.card-container, .card-front, .card-back {
-    width: 192px;
-    height: 108px;
-}
-    
-/* здесь находится скорость перевертывания */
 .card {
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
+    background-color: rgb(0, 255, 64);
+    width: 190px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+// .card-container .card.flip {
+//     transform: rotateY(180deg);
+// }
     
-/* скройте обратную сторону во время переворота */
-.card-front, .card-back {
-    backface-visibility: hidden;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    &__img {
-        width: 192px;
-        height: 108px;
-    }
-}
-    
-/* лицевая сторона размещена над обратной */
 .card-front {
-    z-index: 2;
+    width: 100%;
+    height: 65%;
+    text-align: center;
+    vertical-align: center;
+    font-size: 90pt;
 }
-    
-/* обратная, изначально скрытая сторона */
-.card-back {
-    transform: rotateY(180deg);
+.chip00 {
+    opacity: 00;
 }
+
 
 .playing-results {
     // background-color: burlywood;
