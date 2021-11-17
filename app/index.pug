@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Игра-запоминалка
+        <link href="https://allfont.ru/allfont.css?fonts=hang-the-dj" rel="stylesheet" type="text/css" />
+        include _styles.pug
+    body 
+
+        .wrapper
+            .general
+                .container
+                    .general__inner
+                        aside.aside 
+                        main.main
+                            canvas
+                            .size-playing-field
+                                //- .size-playing-field__name
+                                //-     .size-playing-field__name-text Выбираем размер поля
+                                .size-playing-field__el.size-playing-field__el--2x3
+                                    .size-playing-field__el-text 2x3
+                                .size-playing-field__el.size-playing-field__el--3x4
+                                    .size-playing-field__el-text 3x4
+                                .size-playing-field__el.size-playing-field__el--4x5
+                                    .size-playing-field__el-text 4x5
+                                .size-playing-field__el.size-playing-field__el--5x6
+                                    .size-playing-field__el-text 5x6
+                                .size-playing-field__el.size-playing-field__el--1x2
+                                    .size-playing-field__el-text 1x2
+                            .playing-field
+                            .playing-results
+        include _scripts.pug
