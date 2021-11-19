@@ -18,6 +18,8 @@ let activeCard;
 let zeroCard;
 //Рабочий массив карточек
 let workingArrayCards = [];
+//Элемент, по которому прошел клик
+let clickedEl;
 
 
 
@@ -114,7 +116,7 @@ function cardListener() {
     
   //Ищем коллецию карточек на нашем поле
   let arrowCard = document.querySelectorAll('.card');
-  console.log ("777")
+  // console.log ("777")
 
   //Создаем цикл для перебора массива и приклеивания функции нашим карточкам
   for (let i = 0; i < arrowCard.length; i++) {
@@ -127,6 +129,7 @@ function cardListener() {
       // console.log(222)
     }
   }
+  switchLogic = true;
 }
 
 
@@ -134,11 +137,11 @@ function cardListener() {
 function сardClick(eventObject) {
     //Во избежание множественных быстрых кликов по карточкам и их срабатывания, добавляем логический переключатель, который позволит запустить новую функцию обрабтки клика только при завершении старой.
     if (switchLogic) {
-      console.log ("44444")
+      // console.log ("44444")
       //в начале функции переключаем в ЛОЖЬ, что бы следующие клики не обрабатывались, пока функция не завершится
       switchLogic = false
       //определяем обьект клика
-      let clickedEl = eventObject.currentTarget;
+      clickedEl = eventObject.currentTarget;
 
       //Если на обьекте клика нет класса active, то 
       if (!(clickedEl.classList.contains('active'))) {
@@ -159,11 +162,12 @@ function сardClick(eventObject) {
             // console.log(zeroCard)
           }
         }
+        //мы удаляем класс active на карточку
+        clickedEl.classList.remove('active');
         //Запускаем функцию определения можно ли двигать карточку
         allowMovement();
-        switchLogic = true;
-
-      } 
+        // switchLogic = true;
+      }
     }
 }
 
@@ -174,32 +178,13 @@ function allowMovement() {
       (activeCard === 11)) {
 
     if (activeCard === (zeroCard + 1)) {
-      //меняем местами элементы в массиве
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-
-      new ProductGrid(workingArrayCards);
-      cardListener()
-
+      allowedCard()
     } else if  (activeCard === (zeroCard - 4)) {
-      // console.log(6666)
-      // console.log(workingArrayCards)
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-      new ProductGrid(workingArrayCards);
-      cardListener()
+      allowedCard()
     } else if  (activeCard === (zeroCard + 4)) {
-      // console.log(6666)
-      // console.log(workingArrayCards)
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-      new ProductGrid(workingArrayCards);
-      cardListener()
+      allowedCard()
     } else {
-      alert ("blb")
+      missCard()
     }
 
   } else if ((activeCard === 4) ||
@@ -207,76 +192,58 @@ function allowMovement() {
             (activeCard === 12)) {
 
     if (activeCard === (zeroCard - 1)) {
-      //меняем местами элементы в массиве
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-
-      new ProductGrid(workingArrayCards);
-      cardListener()
-
+      allowedCard()
     } else if  (activeCard === (zeroCard - 4)) {
-      // console.log(6666)
-      // console.log(workingArrayCards)
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-      new ProductGrid(workingArrayCards);
-      cardListener()
+      allowedCard()
     } else if  (activeCard === (zeroCard + 4)) {
-      // console.log(6666)
-      // console.log(workingArrayCards)
-      let tmp = workingArrayCards[activeCard];
-      workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-      workingArrayCards[zeroCard] = tmp;
-      new ProductGrid(workingArrayCards);
-      cardListener()
+      allowedCard()
     } else {
-      alert ("blb")
+      missCard()
     }
 
   } else {
 
     if (activeCard === (zeroCard - 1)) {
-        //меняем местами элементы в массиве
-        let tmp = workingArrayCards[activeCard];
-        workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-        workingArrayCards[zeroCard] = tmp;
-
-        new ProductGrid(workingArrayCards);
-        cardListener()
+      allowedCard()
     } else if  (activeCard === (zeroCard + 1)) {
-          // console.log(6666)
-          // console.log(workingArrayCards)
-          let tmp = workingArrayCards[activeCard];
-          workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-          workingArrayCards[zeroCard] = tmp;
-          new ProductGrid(workingArrayCards);
-          cardListener()
-          
-
+      allowedCard()
     } else if  (activeCard === (zeroCard - 4)) {
-        // console.log(6666)
-        // console.log(workingArrayCards)
-        let tmp = workingArrayCards[activeCard];
-        workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-        workingArrayCards[zeroCard] = tmp;
-        new ProductGrid(workingArrayCards);
-        cardListener()
+      allowedCard()
     } else if  (activeCard === (zeroCard + 4)) {
-        // console.log(6666)
-        // console.log(workingArrayCards)
-        let tmp = workingArrayCards[activeCard];
-        workingArrayCards[activeCard] = workingArrayCards[zeroCard];
-        workingArrayCards[zeroCard] = tmp;
-        new ProductGrid(workingArrayCards);
-        cardListener()
+      allowedCard()
     } else {
-        alert ("blb")
+      missCard()
     }
   } 
 }
 
+//обработка клика по карточке, которую можно двигать
+function allowedCard() {
+  //меняем местами элементы в массиве
+  transformArray()
+  //перерисовываем массив
+  new ProductGrid(workingArrayCards);
+  //заново вешаем слушателей
+  cardListener()
+}
+
+//трансформация массива
+function transformArray() {
+  let tmp = workingArrayCards[activeCard];
+  workingArrayCards[activeCard] = workingArrayCards[zeroCard];
+  workingArrayCards[zeroCard] = tmp;
+} 
+
+//подсветка карточки, которую нельзя двигать
+function missCard() {
+  let tempEl = clickedEl
+  tempEl.classList.add('miss');
+  setTimeout(() => {
+    tempEl.classList.remove('miss')
+    switchLogic = true;
+
+  }, 100);
+}
 
 
 function sort() {
