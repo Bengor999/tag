@@ -70,7 +70,7 @@ html {
 
 html {
   position: relative;
-  background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-03/1614641619_1-p-igrovoi-fon-dlya-fotoshopa-1.jpg);
+  background-image: url(https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_960_720.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -81,12 +81,13 @@ html {
   position: relative;
   margin: auto;
   margin-top: 30px;
-  border: 5px solid red;
-  border-radius: 10px;
+  border: 5px solid #ffbb00;
+  border-bottom: 0px;
+  border-radius: 10px 10px 0px 0px;
   padding: 10px;
   width: 800px;
   height: 800px;
-  background-color: aquamarine;
+  background-color: #179269;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -102,6 +103,14 @@ html {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center; }
+  .playing-field_end {
+    height: auto; }
+  .playing-field__game-over {
+    width: 100%;
+    height: auto; }
+    .playing-field__game-over_img {
+      width: 100%;
+      height: auto; }
 
 .card-container {
   margin: 1px;
@@ -136,6 +145,7 @@ html {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  border: #686617 5px solid;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -160,7 +170,9 @@ html {
   opacity: 00; }
 
 .additional-field {
-  background-color: cornsilk;
+  background-color: #179269;
+  border: 5px solid #ffbb00;
+  border-top: 0px;
   width: 800px;
   height: auto;
   position: relative;
@@ -169,23 +181,31 @@ html {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
-  margin-top: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 10px; }
   .additional-field__replacing-chips {
-    width: 390px;
+    width: 100%;
     text-align: center;
-    font-size: 25px;
-    text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
-    color: #1b3b20; }
+    font-size: 50px;
+    color: black; }
     .additional-field__replacing-chips_text {
       padding: 10px; }
     .additional-field__replacing-chips_button {
       padding: 10px 20px 10px 20px;
       background-color: cyan;
-      border-radius: 5px;
+      border-radius: 15px;
       font-weight: 700;
       text-align: center;
       text-decoration: none;
@@ -213,17 +233,11 @@ html {
     .additional-field__replacing-chips_unnecessary {
       display: none; }
   .additional-field__playing-results {
-    -webkit-align-self: start;
-        -ms-flex-item-align: start;
-                -ms-grid-row-align: start;
-            align-self: start;
-    background-color: burlywood;
-    width: 390px; }
+    width: 100%; }
     .additional-field__playing-results_text {
       text-align: center;
-      font-size: 25px;
-      text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
-      color: #1b3b20; }
+      font-size: 50px;
+      color: black; }
 
 .game-over {
   position: absolute;
@@ -286,6 +300,9 @@ html {
     .game-over__button:hover {
       text-shadow: 1px 1px 0 yellowgreen, -1px 1px 0 yellowgreen;
       border: yellowgreen 4px solid; }
+
+.exchange {
+  border: cadetblue solid 6px; }
 
 .hidden {
   opacity: 0; }

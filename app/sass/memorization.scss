@@ -2,7 +2,9 @@
 
 html {
     position: relative;
-    background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-03/1614641619_1-p-igrovoi-fon-dlya-fotoshopa-1.jpg);
+    // background-image: url(https://cdn.pixabay.com/photo/2014/09/21/14/39/surface-455124_960_720.jpg);
+    // background-image: url(https://cdn.pixabay.com/photo/2015/12/19/02/12/texture-1099399_960_720.jpg);
+    background-image: url(https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_960_720.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed; 
@@ -16,16 +18,28 @@ html {
     position: relative;
     margin: auto;
     margin-top: 30px;
-    border: 5px solid red;
-    border-radius: 10px;
+    border: 5px solid rgb(255, 187, 0);
+    border-bottom: 0px;
+    border-radius: 10px 10px 0px 0px;
     padding: 10px;
     width: 800px;
     height: 800px;
-    background-color: aquamarine;
+    background-color: rgb(23, 146, 105);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    &_end {
+        height: auto;
+    }
+    &__game-over {
+        width: 100%;
+        height: auto;
+        &_img {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
 .card-container {
     margin: 1px;
@@ -42,6 +56,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: rgb(104, 102, 23) 5px solid;
     //запрещаем выделение текста
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -63,30 +78,33 @@ html {
     opacity: 00;
 }
 .additional-field {
-    background-color: cornsilk;
+    background-color: rgb(23, 146, 105);
+    border: 5px solid rgb(255, 187, 0);
+    border-top: 0px;
     width: 800px;
     height: auto;
     position: relative;
     margin: auto;
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     &__replacing-chips {
-        width: 390px;
+        width: 100%;
         text-align: center;
-        font-size: 25px;
-        // text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
-        text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
+        font-size: 50px;
+        // text-shadow: 3px 3px 3px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #0f7a56, 0px 0px 70px #0f7a56, 0px 0px 80px #0f7a56, 0px 0px 100px #0f7a56, 0px 0px 150px #0f7a56;
+        // text-shadow: 3px 3px 3px #c2c0c0, 3px 3px 3px #c9c7c7, 3px 3px 3px #d1cece, 3px 3px 3px #cfcdcd;
         // text-shadow: 0 2px 0 0px hsl(330, 100%, 25%), 0 3px 2px 0px hsla(330, 100%, 15%, 0.5), 0 3px 0 3px hsl(350, 100%, 50%), 0 5px 0 3px hsl(350, 100%, 25%), 0 6px 2px 3px hsla(350, 100%, 15%, 0.5);
-        color: hsl(129, 37%, 17%);
+        color: hsl(0, 0%, 0%);
         &_text {
             padding: 10px;
         }
         &_button {
             padding: 10px 20px 10px 20px ;
             background-color: cyan;
-            border-radius: 5px;
+            border-radius: 15px;
             font-weight:700;
             text-align:center;
             text-decoration: none;
@@ -113,16 +131,18 @@ html {
 
     }
     &__playing-results {
-        align-self: start;
-        background-color: burlywood;
-        width: 390px;
+        // align-self: start;
+        // background-color: burlywood;
+        width: 100%;
         &_text {
             text-align: center;
-            font-size: 25px;
+            font-size: 50px;
+            // text-shadow: 3px 3px 3px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #0f7a56, 0px 0px 70px #0f7a56, 0px 0px 80px #0f7a56, 0px 0px 100px #0f7a56, 0px 0px 150px #0f7a56;
+
             // text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
-            text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
+            // text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
             // text-shadow: 0 2px 0 0px hsl(330, 100%, 25%), 0 3px 2px 0px hsla(330, 100%, 15%, 0.5), 0 3px 0 3px hsl(350, 100%, 50%), 0 5px 0 3px hsl(350, 100%, 25%), 0 6px 2px 3px hsla(350, 100%, 15%, 0.5);
-            color: hsl(129, 37%, 17%);
+            color: hsl(0, 0%, 0%);
     
         }
     }
@@ -184,7 +204,9 @@ html {
         }
     }
 }
-
+.exchange {
+    border: cadetblue solid 6px;
+}
 
 .hidden {
         opacity: 0;
