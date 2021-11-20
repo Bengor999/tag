@@ -11,54 +11,6 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
-.general__inner {
-    // background-color: chocolate;
-}
-.aside {
-    // background-color: cornflowerblue;
-}
-.main {
-    // background-color: crimson;
-}
-// .size-playing-field {
-//     // border: blueviolet 2px solid;
-//     margin: 0 auto;
-//     display: flex;
-//     width: 60%;
-//     justify-content: space-between;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     // background-color: aquamarine;
-//     font-size: 48px;
-//     // text-shadow: 4px 4px 4px #aaa;
-//     // padding: 40px 10px;
-//     text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
-//     color: #fff;
-//     // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
-//     // &__name {
-//     //     padding: 10px;
-//     //     width: 100%;
-//     //     display: flex;
-//     //     justify-content: center;
-//     //     &-text {
-//     //         font-size: 30px;
-//     //         color: #fff;
-//     // text-shadow: 0px 1px 1px #000000, 0px -1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
-//     // color: #707070;
-//     // text-shadow: 2px 2px 0px #eeeeee, 4px 4px 0px #707070;
-//     // // color: #fff;
-//     // // text-shadow: 0px 1px 0px #c7c8ca, 0px 2px 0px #b1b3b6, 0px 3px 0px #9d9fa2, 0px 4px 0px #8a8c8e, 0px 5px 0px #77787b, 0px 6px 0px #636466, 0px 7px 0px #4d4d4f, 0px 8px 7px #001135;
-//     //     }
-//     // }
-//     &__el {
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         width: 15%;
-//         height: 70px;
-//         cursor: pointer;
-//     }
-// }
 .playing-field {
     z-index: 1;
     position: relative;
@@ -82,10 +34,7 @@ html {
     justify-content: center;
     width: 190px;
     height: 190px;
-
-    // perspective: 1000;
 }
-/* переверните сторону при проведении мышью */
 .card {
     background-color: rgb(0, 255, 64);
     width: 190px;
@@ -102,10 +51,7 @@ html {
     user-select: none;           /* Non-prefixed version, currently
                                     not supported by any browser */
 }
-// .card-container .card.flip {
-//     transform: rotateY(180deg);
-// }
-    
+   
 .card-front {
     width: 100%;
     height: 65%;
@@ -116,21 +62,72 @@ html {
 .chip00 {
     opacity: 00;
 }
-
-
-.playing-results {
-    // background-color: burlywood;
+.additional-field {
+    background-color: cornsilk;
+    width: 800px;
+    height: auto;
+    position: relative;
     margin: auto;
-    width: 470px;
-    &__text {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 10px;
+    &__replacing-chips {
+        width: 390px;
         text-align: center;
         font-size: 25px;
         // text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
         text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
         // text-shadow: 0 2px 0 0px hsl(330, 100%, 25%), 0 3px 2px 0px hsla(330, 100%, 15%, 0.5), 0 3px 0 3px hsl(350, 100%, 50%), 0 5px 0 3px hsl(350, 100%, 25%), 0 6px 2px 3px hsla(350, 100%, 15%, 0.5);
         color: hsl(129, 37%, 17%);
+        &_text {
+            padding: 10px;
+        }
+        &_button {
+            padding: 10px 20px 10px 20px ;
+            background-color: cyan;
+            border-radius: 5px;
+            font-weight:700;
+            text-align:center;
+            text-decoration: none;
+            background: #eaeef1;
+            display:block;
+            margin: 20px auto;
+            background-image: linear-gradient(rgba(14, 11, 197, 0.671), rgba(0,0,0,.1));
+            color: rgba(0,0,0,.6);
+            text-shadow: 0 1px 1px rgba(255,255,255,.7);
+            box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2), inset 0 1px 2px rgba(255,255,255,.7);
+            &:hover {
+                background-image: linear-gradient(rgba(18, 14, 255, 0.815), rgba(0,0,0,.1));
+
+            }
+            &:active {
+                background: #d0d3d6;
+                background-image: linear-gradient(rgba(14, 11, 197, 0.829), rgba(0,0,0,0));
+                box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
+            }
+        }
+        &_unnecessary {
+            display: none;
+        }
 
     }
+    &__playing-results {
+        align-self: start;
+        background-color: burlywood;
+        width: 390px;
+        &_text {
+            text-align: center;
+            font-size: 25px;
+            // text-shadow: 0px 0px 10px #ffffff, 0px 0px 20px #ffffff, 0px 0px 30px #ffffff, 0px 0px 40px #ff00de, 0px 0px 70px #ff00de, 0px 0px 80px #ff00de, 0px 0px 100px #ff00de, 0px 0px 150px #ff00de;
+            text-shadow: 0px 1px 1px #c2c0c0, 0px -1px 1px #c9c7c7, 1px 0px 1px #d1cece, -1px 0px 1px #cfcdcd;
+            // text-shadow: 0 2px 0 0px hsl(330, 100%, 25%), 0 3px 2px 0px hsla(330, 100%, 15%, 0.5), 0 3px 0 3px hsl(350, 100%, 50%), 0 5px 0 3px hsl(350, 100%, 25%), 0 6px 2px 3px hsla(350, 100%, 15%, 0.5);
+            color: hsl(129, 37%, 17%);
+    
+        }
+    }
+
+
 }
 .game-over {
     position: absolute;

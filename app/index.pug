@@ -15,19 +15,10 @@ html(lang="en")
                         aside.aside 
                         main.main
                             canvas
-                            //- .size-playing-field
-                            //-     //- .size-playing-field__name
-                            //-     //-     .size-playing-field__name-text Выбираем размер поля
-                            //-     //- .size-playing-field__el.size-playing-field__el--2x3
-                            //-     //-     .size-playing-field__el-text 2x3
-                            //-     //- .size-playing-field__el.size-playing-field__el--3x4
-                            //-     //-     .size-playing-field__el-text 3x4
-                            //-     //- .size-playing-field__el.size-playing-field__el--4x5
-                            //-     //-     .size-playing-field__el-text 4x5
-                            //-     //- .size-playing-field__el.size-playing-field__el--5x6
-                            //-     //-     .size-playing-field__el-text 5x6
-                            //-     //- .size-playing-field__el.size-playing-field__el--1x2
-                            //-     //-     .size-playing-field__el-text 1x2
                             .playing-field
-                            .playing-results
+                            .additional-field
+                                .additional-field__replacing-chips
+                                    .additional-field__replacing-chips_text Обмен местоположением у двух любых фишек <br> (Одноразово)
+                                    button.additional-field__replacing-chips_button ОБМЕН
+                                .additional-field__playing-results
         include _scripts.pug

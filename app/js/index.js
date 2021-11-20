@@ -6,8 +6,8 @@
 let size = 16;
 //Переменная с количеством удачных кликов
 let successfulClick = 0;
-//переменная с количеством неудачных кликов
-let unsuccessfulClick = 0;
+//переменная с количеством совпадений с выигрышным вариантом
+let winningMatches = 0;
 //Ставим переключатель отработки функции
 let switchLogic = true;
 //Переключатель для функции фейерверка
@@ -20,6 +20,8 @@ let zeroCard;
 let workingArrayCards = [];
 //Элемент, по которому прошел клик
 let clickedEl;
+//Логический переключатель для кнопки обмена карточек
+let exchangeLogic = true;
 
 
 
@@ -28,14 +30,9 @@ let clickedEl;
 // //Ищем элемент с нашим полем под карточки
 const field = document.querySelector('.playing-field');
 //Ищем элемент с результатом кликов
-const playingResults = document.querySelector('.playing-results');
-
-//Функция для остановки и скрытия фейерверка
-function hiddenFireWork() {
-  canvasEl.classList.add('js-display-none')
-  fireWorksLogic = false
-}
-
+const playingResults = document.querySelector('.additional-field__playing-results');
+//Ищем элемент с дополнительным полем
+const additionalField = document.querySelector('.additional-field');
 
 //Для перемешивания массива используем отличный алгоритм под названием Тасование Фишера — Йетса. Суть заключается в том, чтобы проходить по массиву в обратном порядке и менять местами каждый элемент со случайным элементом, который находится перед ним.
 function mixing(arr) {
@@ -108,14 +105,13 @@ class ProductGrid {
     }
   }
 }
-// new ProductGrid(cards);
 
 
 //Вешаем слушателей на отрисованные карточки
 function cardListener() {
     
   //Ищем коллецию карточек на нашем поле
-  let arrowCard = document.querySelectorAll('.card');
+  let arrowCard = field.querySelectorAll('.card');
   // console.log ("777")
 
   //Создаем цикл для перебора массива и приклеивания функции нашим карточкам
@@ -137,13 +133,13 @@ function cardListener() {
 function сardClick(eventObject) {
     //Во избежание множественных быстрых кликов по карточкам и их срабатывания, добавляем логический переключатель, который позволит запустить новую функцию обрабтки клика только при завершении старой.
     if (switchLogic) {
-      // console.log ("44444")
       //в начале функции переключаем в ЛОЖЬ, что бы следующие клики не обрабатывались, пока функция не завершится
       switchLogic = false
       //определяем обьект клика
       clickedEl = eventObject.currentTarget;
 
       //Если на обьекте клика нет класса active, то 
+      //Зачем это условие?
       if (!(clickedEl.classList.contains('active'))) {
         //мы добавляем класс active на карточку
         clickedEl.classList.add('active');
@@ -154,19 +150,17 @@ function сardClick(eventObject) {
         for (let i = 0; i < arrowCard.length; i++) {
           let clickCard = arrowCard[i];
           if (clickCard.classList.contains('active')) {
-            // console.log(3333)
+            // запоминаем индекс активной карточки
             activeCard = i;
-            // console.log(activeCard)
           } else if (clickCard.classList.contains('chip00')) {
+            //запоминаем индекс нулевой картоски
             zeroCard = i;
-            // console.log(zeroCard)
           }
         }
         //мы удаляем класс active на карточку
         clickedEl.classList.remove('active');
         //Запускаем функцию определения можно ли двигать карточку
         allowMovement();
-        // switchLogic = true;
       }
     }
 }
@@ -224,7 +218,9 @@ function allowedCard() {
   //перерисовываем массив
   new ProductGrid(workingArrayCards);
   //заново вешаем слушателей
-  cardListener()
+  cardListener();
+  successfulClick++;
+  renderQuantityClick()
 }
 
 //трансформация массива
@@ -245,56 +241,19 @@ function missCard() {
   }, 100);
 }
 
-
-function sort() {
-  //Ищем коллецию карточек на нашем поле
-  let arrow = field.querySelectorAll('.active');
-
-//по задумке на поле не может быть больше двух карточек с классом active, так что всего два индекса\
-//При создании карточек товара мы каждой карточке добавили уникальные классы, совпадать классы могут только у карточек с одинаковым ID
-//Если классы двух открытых карточек совпадают, то мы их скрываем через присвоение класса hidden
-//Иначе мы эти две карточки переворачиваем назад
-  if (arrow[0].classList.value == arrow[1].classList.value) {
-
-    arrow[0].classList.remove('active');
-    arrow[1].classList.remove('active');
-    arrow[0].classList.add('hidden');
-    arrow[1].classList.add('hidden');
-    field.classList.remove('tracking');
-    //Вызываем функцию проверки завершения игры
-    gameOver();
-    switchLogic = true;
-    //Меняем значение удачных кликов
-    successfulClick = ++successfulClick;
-    console.log(successfulClick)
-    renderQuantityClick()
-  } else {
-    arrow[0].classList.remove('active');
-    arrow[1].classList.remove('active');
-    arrow[0].classList.remove('flip');
-    arrow[1].classList.remove('flip');
-    field.classList.remove('tracking');
-    switchLogic = true;
-    unsuccessfulClick = ++unsuccessfulClick;
-    renderQuantityClick();
-
-  }
-
-}
-
-
 randomArrow(cards, size)
 
 
 //отрисовываем результат поиска совпадений
 function renderQuantityClick() {
+  coincidencesChip();
   playingResults.innerHTML = '';
-  let elem = createElement(`<div class="playing-results__content">
-      <div class="playing-results__text">
-      Общее количество открытых пар ${successfulClick + unsuccessfulClick}
+  let elem = createElement(`<div class="additional-field__playing-results_content">
+      <div class="additional-field__playing-results_text">
+      Передвинуто фишек ${successfulClick}
       </div>
-      <div class="playing-results__text">
-      Из них совпадений ${successfulClick}
+      <div class="additional-field__playing-results_text">
+      Фишек на своих местах ${winningMatches}
       </div>
     </div>`);
 
@@ -306,6 +265,111 @@ function clearQuantityClick() {
   playingResults.innerHTML = '';
 }
 
+//Проверяем количество фишек на своих местах
+function coincidencesChip() {
+  //Обнуляем значение совпадений
+  winningMatches = 0;
+  //Вводим доп переменную, с котрой проводим сравнение (наши карточки должны стоять по порядку возрастания)
+  let n = 0;
+  //Создаем цикл для перебора массива и определяем местонахождение каждой карточки в соответсвии с эталоном
+  for (let i = 0; i < workingArrayCards.length; i++) {
+    let elCard = workingArrayCards[i];
+    ++n;
+    if (elCard.id == n) {
+      // Увеличиваем количество совпалений
+      winningMatches++;
+    }
+  }
+}
+
+
+//Вешаем слушателей на кнопку обмена карточек
+function btnExchangeListener() {
+    
+  //Ищем кнопку на нашем поле
+  let btnExchange = additionalField.querySelector('.additional-field__replacing-chips_button');
+  //приклеиваем к ней функцию и слушателя
+  btnExchange.addEventListener('click', btnCardExchange);
+}
+btnExchangeListener()
+
+
+//Функция кнопки ОБМЕН ФИШКИ
+function btnCardExchange() {
+  //Обновляем игровое поле и вешаем новых слушателей на фишки
+  new ProductGrid(workingArrayCards);
+  cardExchangeListener();
+
+  //отрисовываем совет после нажатия на кнопку
+  let el = additionalField.querySelector('.additional-field__replacing-chips')
+  el.innerHTML = '';
+  let elem = createElement(`<div class="additional-field__replacing-chips_text">
+    Выберите две фишки
+    </div>`);
+
+  //Вставляем элемент в игровое поле вместо кнопки
+  el.append(elem);
+}
+
+
+//Функция для слушателя карточек при их обмене
+function cardExchangeListener() {
+  //Ищем коллецию карточек на нашем поле
+  let arrowCard = field.querySelectorAll('.card');
+  // console.log ("777")
+
+  //Создаем цикл для перебора массива и приклеивания функции нашим карточкам
+  for (let i = 0; i < arrowCard.length; i++) {
+    let clickCard = arrowCard[i];
+    //На нулевую карточку слушатель вешать не надо
+    if (clickCard.classList.contains('chip00')) {
+      // console.log(111)
+    } else {
+      clickCard.addEventListener('click', cardExchange);
+      // console.log(222)
+    }
+  }
+}
+
+function cardExchange(eventObject) {
+        //определяем обьект клика
+        let clickedElem = eventObject.currentTarget;
+        //Если на обьекте клика есть класса exchange, то удаляем его
+        if ((clickedElem.classList.contains('exchange'))) {
+          //мы добавляем класс active на карточку
+          clickedElem.classList.remove('exchange');
+          //меняем лог переключатель
+          exchangeLogic = true;
+        } else if (exchangeLogic !== false){
+          //присваиваем класс exchange
+          clickedElem.classList.add('exchange');
+          //Добавляем логический переключатель
+          exchangeLogic = false;
+        } else {
+          //присваиваем класс exchangeSecond
+          clickedElem.classList.add('exchangeSecond');
+          // собираем коллекцию элементов
+          let arrowCard = field.querySelectorAll('.card');
+          //Создаем цикл для перебора массива и поиска индексов
+          for (let i = 0; i < arrowCard.length; i++) {
+            let clickCard = arrowCard[i];
+            if (clickCard.classList.contains('exchange')) {
+              // запоминаем индекс активной карточки
+              activeCard = i;
+              clickCard.classList.remove('exchange')
+            } else if (clickCard.classList.contains('exchangeSecond')) {
+              //запоминаем индекс нулевой картоски
+              zeroCard = i;
+              clickCard.classList.remove('exchangeSecond')
+            }
+          }
+          allowedCard()
+          //отрисовываем совпосле нажатия на кнопку
+          let el = additionalField.querySelector('.additional-field__replacing-chips')
+          el.innerHTML = '';
+          el.classList.add('additional-field__replacing-chips_unnecessary')
+        }
+}
 
 
 function gameOver() {
