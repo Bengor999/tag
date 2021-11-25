@@ -1,3 +1,5 @@
+"use strict";
+
 const cards = [
               {
                 name: 'chip00',
@@ -50,7 +52,7 @@ const cards = [
                 id: '09'
               },
               {
-                name: 'chip01 10',
+                name: 'chip10',
                 image: '10.jpg',
                 id: '10'
               },

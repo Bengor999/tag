@@ -1,7 +1,10 @@
 @@include('card.js');
+@@include('tag.js');
 
+let tagStart = new Tag ();
+tagStart.randomArrow(cards, 16);
 
-
+/*
 //Устанавливаем начальное значение количества карточек
 let size = 16;
 //Переменная с количеством удачных кликов
@@ -46,14 +49,13 @@ function mixing(arr) {
 
 function randomArrow(arr) {
   successfulClick = 0;
-  unsuccessfulClick = 0;
   clearQuantityClick();
   //Дублируем исходный массив
   workingArrayCards = [...arr];
   //Перемешиваем, что бы не повторялись начальные карточки
   mixing(workingArrayCards) 
   //строим игровую сетку из полученного масиива
-  new ProductGrid(workingArrayCards);
+  cardsGrid(workingArrayCards);
   //навешиваем слушателей на карточки
   cardListener()
 }
@@ -65,46 +67,26 @@ function createElement(html) {
   return div.firstElementChild;
 };
 
-//Класс для отрисовки карточки
-class ProductCard {
-  //задаем параметры в конструктор
-  constructor(cards) {
-    this.cards = cards;
-    this.render();
-  }
-  //Отрисовываем, используя нашу маленькую функцию добавления элементов
-  render() {
-    this.elem = createElement(`<div class="card-container">
-    <div class="card ${this.cards.name}">
-      <div class="card-front">
-        ${this.cards.id}
-      </div>
-    </div>
-  </div>`);
+
+  
+
+
+//Заполняем игровое поле
+function cardsGrid(cards) {
+  field.innerHTML = '';
+
+  for (let el of cards) {
+    let elem = createElement(`<div class="card-container">
+        <div class="card ${el.name}">
+          <div class="card-front">
+            ${el.id}
+          </div>
+        </div>
+      </div>`);
+    field.append(elem);
   }
 }
 
-
-//Задаем сетку поля, используя класс ProductCard
-class ProductGrid {
-  constructor(cards) {
-    this.cards = cards;
-    this.render();
-  }
-//отрисовываем и подставляем
-  render() {
-    this.renderContent();
-  }
-
-  renderContent() {
-    field.innerHTML = '';
-
-    for (let car of this.cards) {
-      let card = new ProductCard(car);
-      field.append(card.elem);
-    }
-  }
-}
 
 
 //Вешаем слушателей на отрисованные карточки
@@ -216,7 +198,7 @@ function allowedCard() {
   //меняем местами элементы в массиве
   transformArray()
   //перерисовываем массив
-  new ProductGrid(workingArrayCards);
+  cardsGrid(workingArrayCards);
   //заново вешаем слушателей
   cardListener();
   successfulClick++;
@@ -301,7 +283,7 @@ btnExchangeListener()
 //Функция кнопки ОБМЕН ФИШКИ
 function btnCardExchange() {
   //Обновляем игровое поле и вешаем новых слушателей на фишки
-  new ProductGrid(workingArrayCards);
+  cardsGrid(workingArrayCards);
   cardExchangeListener();
 
   //отрисовываем совет после нажатия на кнопку
@@ -380,7 +362,8 @@ function gameOver() {
   console.log("hjjhjhjhjh")
   field.innerHTML = '';
   let element = createElement(`<div class="playing-field__game-over">
-      <img class="playing-field__game-over_img" src="https://i.gifer.com/embedded/download/G4ZO.gif" alt="Финальная картинка"/>
+      <img class="playing-field__game-over_img" src="../assets/images/3b07736s-19201.jpg" alt="Грибок"/>
+      <img class="playing-field__game-over_img" src="https://i.gifer.com/embedded/download/G4ZO.gif" alt="Празднование гифка"/>
     </div>`);
 
   //Вставляем элемент в игровое поле вместо карточек
@@ -394,6 +377,6 @@ function gameOver() {
   
   setTimeout(function(){
     location.reload();
-  }, 5000);
+  }, 10000);
 }
-
+*/
